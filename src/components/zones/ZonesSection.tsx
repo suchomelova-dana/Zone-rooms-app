@@ -1,6 +1,6 @@
 import { useAppStore } from "../../store/useAppStore"
+import { AddZoneDialog } from "./dialogs/AddZoneDialog";
 import { ZoneCard } from "./ZoneCard";
-import { AddZoneDialog } from "./AddZoneDialog";
 
 export default function ZonesSection() {
     
@@ -11,7 +11,7 @@ export default function ZonesSection() {
             <h1 className="font-bold text-center">Zóny</h1>
             {
                 zones.length > 0 ? (
-                    <ul className="flex flex-col gap-2">
+                    <ul className="flex flex-col gap-4">
                         {
                             zones.map((zone) =>  <ZoneCard zone={zone} />)
                         }

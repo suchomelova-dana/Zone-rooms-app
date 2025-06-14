@@ -1,5 +1,5 @@
 import { useAppStore } from "../../store/useAppStore"
-import { AddRoomDialog } from "./AddRoomDialog";
+import { AddRoomDialog } from "./dialogs/AddRoomDialog";
 import { RoomCard } from "./RoomCard";
 
 
@@ -11,7 +11,7 @@ export default function RoomsSection() {
             <h1 className="font-bold text-center">Místnosti</h1>
             {
                 rooms.length > 0 ? (
-                    <ul className="flex flex-col gap-2">
+                    <ul className="flex flex-col gap-4">
                         {
                             rooms.map((room) => {
                                 return (

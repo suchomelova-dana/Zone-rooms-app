@@ -16,17 +16,21 @@ export function ZoneRoomsList({zoneName}: Props) {
 
     return (
         <>
-        {
-            zoneRooms && zoneRooms.length > 0 ? (
-                <ul>
-                    {
-                        zoneRooms?.map(room => <h1>{room.name}</h1>)
-                    }
-                </ul>
-            ) : (
-                <span>Tato zóna nemá žádné místnosti</span>
-            )
-        }
+            <span className="font-bold">{`Místnosti: `}</span>
+            {
+                zoneRooms && zoneRooms.length > 0 ? (
+                    <span>
+                        { 
+                            zoneRooms?.map((room, index) => 
+                                <span>
+                                    {index === zoneRooms.length - 1 ? room.name : `${room.name}, `}
+                                </span>)
+                        }
+                    </span>
+                ) : (
+                    <span>Tato zóna nemá žádné místnosti</span>
+                )
+            }
         </>  
     )
 }
