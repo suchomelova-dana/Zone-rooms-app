@@ -19,7 +19,10 @@ export const useAppStore = create<AppStoreType>((set) => ({
     addZone: (newZone: Zone) => set(state => ({zones: [...state.zones, newZone]})),
     addRoom: (newRoom: Room) => set(state => ({rooms: [...state.rooms, newRoom]})),
     removeRoom: (name: Room["name"]) => set(state => ({rooms: state.rooms.filter(r => r.name !== name)})),
-    removeZone: (name: Zone["name"]) => set(state => ({zones: state.zones.filter(z => z.name !== name)})),
+    removeZone: (name: Zone["name"]) => set(state => ({
+        zones: state.zones.filter(z => z.name !== name),
+        rooms: state.rooms.map(r => r.zoneName === name ? {...r, zoneName: undefined} : r)
+    })),
     assignRoomToZone: 
         (roomName: Room["name"], zoneName: Zone["name"]) => 
             set(state => ({ 
