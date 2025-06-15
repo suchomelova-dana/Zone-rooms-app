@@ -7,15 +7,15 @@ export default function RoomsSection() {
     const rooms = useAppStore((state) => state.rooms);
 
     return (
-        <section className="flex flex-col gap-4 w-full py-8 px-16 ">
+        <section className="flex flex-col gap-4 w-full py-8 px-16 items-center">
             <h1 className="font-bold text-center">Místnosti</h1>
             {
                 rooms.length > 0 ? (
-                    <ul className="flex flex-col gap-4">
+                    <ul className="flex flex-col gap-4 w-full">
                         {
                             rooms.map((room) => {
                                 return (
-                                    <RoomCard room={room} />
+                                    <RoomCard room={room} key={room.name}/>
                                 )
                             })
                         }

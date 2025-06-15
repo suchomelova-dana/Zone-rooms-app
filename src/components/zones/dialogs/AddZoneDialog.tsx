@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { Button } from "../../shadcn/button";
-import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "../../shadcn/dialog";
+import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "../../shadcn/dialog";
 import { AddZoneForm } from "../forms/AddZoneForm";
 
 export function AddZoneDialog() {
@@ -13,18 +13,19 @@ export function AddZoneDialog() {
 
     return (
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
-            <DialogTrigger>
-                <Button onClick={() => setIsOpen(true)}>Přidat zónu</Button>
+            <DialogTrigger asChild={true}>
+                <Button onClick={() => setIsOpen(true)} type="button">Přidat zónu</Button>
             </DialogTrigger>
             <DialogContent>
                 <DialogHeader>
                     <DialogTitle>Přidání nové zóny</DialogTitle>
+                    <DialogDescription className="sr-only">Vytvoření nové zóny</DialogDescription>
                 </DialogHeader>
 
                 <AddZoneForm buttonRef={buttonRef} setIsOpen={setIsOpen} />
 
                 <DialogFooter>
-                    <Button onClick={onDialogCancel} >Zrušit</Button>
+                    <DialogClose asChild={true} onClick={onDialogCancel} >Zrušit</DialogClose>
                     <Button onClick={() => buttonRef.current?.click()} >Uložit</Button>
                 </DialogFooter>
             </DialogContent>

@@ -1,13 +1,9 @@
 import { useAppStore } from "../../store/useAppStore"
-import type { Room } from "../../types/Room";
 import type { Zone } from "../../types/Zone"
+import { getRoomsByZoneName } from "../../utils/getRoomsByZoneName";
 
 type Props = {
     zoneName: Zone["name"]
-}
-
-const getRoomsByZoneName = (name: Zone["name"], rooms: Room[]) => {
-    return rooms.filter(r => r.zoneName === name);
 }
 
 export function ZoneRoomsList({zoneName}: Props) {
@@ -22,7 +18,7 @@ export function ZoneRoomsList({zoneName}: Props) {
                     <span>
                         { 
                             zoneRooms?.map((room, index) => 
-                                <span>
+                                <span key={room.name}>
                                     {index === zoneRooms.length - 1 ? room.name : `${room.name}, `}
                                 </span>)
                         }

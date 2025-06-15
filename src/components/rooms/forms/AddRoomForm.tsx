@@ -12,7 +12,13 @@ type Props = {
 export function AddRoomForm({buttonRef, setIsOpen}: Props) {
      const addRoom = useAppStore((state) => state.addRoom);
 
-    const form = useForm<Room>();
+    const form = useForm<Room>({
+        defaultValues: {
+            name: "",
+            area: undefined,
+            volume: undefined,
+        }
+    });
 
     const onDialogSave: SubmitHandler<Room> = (data) => {
         addRoom(data);
@@ -30,7 +36,7 @@ export function AddRoomForm({buttonRef, setIsOpen}: Props) {
                         <FormItem>
                             <FormLabel >Jméno</FormLabel>
                             <FormControl>
-                                <Input placeholder="Jméno" {...field} />
+                                <Input placeholder="Jméno" required={true} {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -44,7 +50,13 @@ export function AddRoomForm({buttonRef, setIsOpen}: Props) {
                         <FormItem>
                             <FormLabel >Obsah v m<sup>2</sup> </FormLabel>
                             <FormControl>
-                                <Input placeholder="Obsah" type="number" {...field} />
+                                <Input
+                                    placeholder="Obsah"
+                                    type="number"
+                                    {...field} 
+                                    onChange={(e) => field.onChange(e.target.valueAsNumber)}
+                                    value={field.value ?? ""}
+                                />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -58,7 +70,13 @@ export function AddRoomForm({buttonRef, setIsOpen}: Props) {
                         <FormItem>
                             <FormLabel >Objem v  m<sup>3</sup></FormLabel>
                             <FormControl>
-                                <Input placeholder="Objem" type="number" {...field} />
+                                <Input
+                                    placeholder="Objem"
+                                    type="number" 
+                                    {...field} 
+                                    onChange={(e) => field.onChange(e.target.valueAsNumber)}
+                                    value={field.value ?? ""}
+                                />
                             </FormControl>
                             <FormMessage />
                         </FormItem>

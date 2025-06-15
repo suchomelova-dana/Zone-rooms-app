@@ -13,7 +13,11 @@ type Props = {
 }
 
 export function AddZoneForm({buttonRef, setIsOpen}: Props) {
-    const form = useForm<Zone>();
+    const form = useForm<Zone>({
+        defaultValues: {
+            name: "",
+        }
+    });
     const addZone = useAppStore(state => state.addZone);
     const zones = useAppStore(state => state.zones)
 
@@ -44,7 +48,7 @@ export function AddZoneForm({buttonRef, setIsOpen}: Props) {
                         <FormItem>
                             <FormLabel >Jméno</FormLabel>
                             <FormControl>
-                                <Input placeholder="Jméno" {...field} />
+                                <Input placeholder="Jméno" required={true} {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>

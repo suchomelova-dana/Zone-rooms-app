@@ -41,7 +41,7 @@ export function AssignRoomForm({buttonRef, roomsOptions, zoneName, setIsOpen}: P
                                     <SelectContent>
                                         {
                                             roomsOptions.map(room => {
-                                                return <SelectItem value={room.name}>{room.name}</SelectItem>
+                                                return <SelectItem value={room.name} key={room.name}>{room.name}</SelectItem>
                                             })
                                         }
                                     </SelectContent>
