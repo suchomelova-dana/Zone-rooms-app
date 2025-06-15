@@ -2,7 +2,7 @@ import { FormProvider, useForm, type SubmitHandler } from "react-hook-form"
 import type { Room } from "../../../types/Room";
 import { FormControl, FormField, FormItem, FormLabel } from "../../shadcn/form";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../../shadcn/select";
-import { type Dispatch, type RefObject, type SetStateAction } from "react";
+import { useCallback, type Dispatch, type RefObject, type SetStateAction } from "react";
 import { useAppStore } from "../../../store/useAppStore";
 import type { Zone } from "../../../types/Zone";
 
@@ -17,11 +17,11 @@ export function AssignRoomForm({buttonRef, roomsOptions, zoneName, setIsOpen}: P
     const form = useForm<{name: string}>();
     const assignRoomToZone = useAppStore(state => state.assignRoomToZone)
 
-    const onDialogSave: SubmitHandler<{name: string}>= (data) => {
+    const onDialogSave: SubmitHandler<{name: string}>= useCallback((data) => {
         assignRoomToZone(data.name, zoneName);
         setIsOpen(false);
         form.reset()
-    }
+    }, [assignRoomToZone, setIsOpen, form])
 
     return (
         <form onSubmit={form.handleSubmit(onDialogSave)} >

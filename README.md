@@ -1,54 +1,39 @@
-# React + TypeScript + Vite
+# Zones-rooms-APP
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Jednoduchá applikace pro správu zón a místností
 
-Currently, two official plugins are available:
+## Zadání
+Vypracuj jednoduchou aplikaci v Reactu s TypeScriptem. Jakou knihovnu pro správu stavů zvolíš, necháváme na Tobě.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Aplikace by měla pracovat se dvěma typy entit: zóny a místnosti. 
 
-## Expanding the ESLint configuration
+### Datový model
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Zóna může obsahovat 0 až N místností.
+Místnost může být přiřazena pouze jedné zóně.
+Každá zóna i místnost má vlastní název (nastavitelný při vytvoření).
+U místnosti lze při vytvoření zadat objem a plochu.
+Zóna si vypočítá součet objemů a ploch všech svých místností.
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Požadovaná funkcionalita
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Přidání nové místnosti
+Odstranění místnosti
+Přidání nové zóny
+Odstranění zóny
+Přiřazení místnosti do zóny
+Odebrání místnosti ze zóny (zůstane nezařazená)
+Možnost otevřít dialog u zóny se seznamem jejích místností
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+
+## Technologie
+
+- [Vite](https://vite.dev/)
+- [React](https://react.dev/)
+- [Typescript] (https://www.typescriptlang.org/)
+- [Zustand] (https://zustand-demo.pmnd.rs/)
+- [Tailwind] (https://tailwindcss.com/)
+- [Shadcn] (https://ui.shadcn.com/)
+- [React-hook-form] (https://react-hook-form.com/)
+

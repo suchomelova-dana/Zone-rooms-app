@@ -17,10 +17,6 @@ export function ZoneCard({zone}: Props) {
     const removeZone = useAppStore(state => state.removeZone);
     const rooms = useAppStore(state => state.rooms);
 
-    const onRemoveZone = () => {
-        removeZone(zone.name);
-    }
-
     const {area, volume} = calculateZoneMetrics(zone, rooms);
 
     return (
@@ -38,7 +34,7 @@ export function ZoneCard({zone}: Props) {
              <div className="absolute h-full -right-5 top-0 flex flex-col justify-center gap-2">
                 <Button
                     className="rounded-full w-10 h-10 bg-red-400 shadow-md"
-                    onClick={onRemoveZone}
+                    onClick={() => removeZone(zone.name)}
                     tooltipText="Odstranit zónu"
                 >
                     <Trash />

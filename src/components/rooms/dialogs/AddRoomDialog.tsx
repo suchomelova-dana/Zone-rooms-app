@@ -7,10 +7,6 @@ export function AddRoomDialog() {
     const buttonRef = useRef<HTMLButtonElement | null>(null);
     const [isOpen, setIsOpen] = useState(false);
 
-    const onDialogCancel = () => {
-        setIsOpen(false);
-    }
-
     return (
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
             <DialogTrigger asChild={true}>
@@ -25,7 +21,7 @@ export function AddRoomDialog() {
                 <AddRoomForm buttonRef={buttonRef} setIsOpen={setIsOpen}/>
 
                 <DialogFooter >
-                    <DialogClose asChild={true} onClick={onDialogCancel} >Zrušit</DialogClose>
+                    <DialogClose asChild={true} onClick={() => setIsOpen(false)} >Zrušit</DialogClose>
                     <Button onClick={() => buttonRef.current?.click()} >Uložit</Button>
                 </DialogFooter>
             </DialogContent>

@@ -1,4 +1,4 @@
-import { type Dispatch, type RefObject, type SetStateAction } from "react";
+import { useCallback, type Dispatch, type RefObject, type SetStateAction } from "react";
 import { useAppStore } from "../../../store/useAppStore"
 import { FormProvider, useForm, type SubmitHandler } from "react-hook-form";
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "../../shadcn/form";
@@ -20,11 +20,11 @@ export function AddRoomForm({buttonRef, setIsOpen}: Props) {
         }
     });
 
-    const onDialogSave: SubmitHandler<Room> = (data) => {
+    const onDialogSave: SubmitHandler<Room> = useCallback((data) => {
         addRoom(data);
         setIsOpen(false);
         form.reset();
-    }
+    }, [addRoom, setIsOpen, form])
 
     return (
         <form onSubmit={form.handleSubmit(onDialogSave)} className="flex flex-col justify-center items-center gap-4 ">

@@ -3,7 +3,6 @@ import { AddZoneDialog } from "./dialogs/AddZoneDialog";
 import { ZoneCard } from "./ZoneCard";
 
 export default function ZonesSection() {
-    
     const zones = useAppStore((state) => state.zones);
 
     return (
@@ -18,7 +17,6 @@ export default function ZonesSection() {
                     </ul>
                 ) : <span className="text-center py-8">Nemáte žádné zóny</span>
             }
-
             <AddZoneDialog /> 
         </section>
     )

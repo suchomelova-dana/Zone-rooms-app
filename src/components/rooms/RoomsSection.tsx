@@ -12,11 +12,7 @@ export default function RoomsSection() {
                 rooms.length > 0 ? (
                     <ul className="flex flex-col gap-4 w-full">
                         {
-                            rooms.map((room) => {
-                                return (
-                                    <RoomCard room={room} key={room.name}/>
-                                )
-                            })
+                            rooms.map((room) => <RoomCard room={room} key={room.name}/>)
                         }
                     </ul>
                 ) : <span className="text-center py-8">Nemáte žádné místnosti</span>

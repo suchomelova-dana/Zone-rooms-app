@@ -4,6 +4,7 @@ import { Button } from "../../shadcn/button"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "../../shadcn/dialog"
 import { useAppStore } from "../../../store/useAppStore"
 import { getRoomsByZoneName } from "../../../utils/getRoomsByZoneName"
+import { useMemo } from "react"
 
 type Props = {
     zone: Zone,
@@ -11,8 +12,8 @@ type Props = {
 
 export function ZoneRoomsDialog({zone}: Props) {
     const rooms = useAppStore(state => state.rooms);
-    const zoneRooms = getRoomsByZoneName(zone.name, rooms);
     const removeRoomFromZone = useAppStore(state => state.removeRoomFromZone)
+    const zoneRooms = useMemo(() => getRoomsByZoneName(zone.name, rooms), [zone.name, rooms]);
 
     if (zoneRooms.length <= 0) {
         return null;

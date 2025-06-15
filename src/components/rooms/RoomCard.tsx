@@ -4,6 +4,7 @@ import type { Room } from "../../types/Room";
 import { Button } from "../shadcn/button";
 import { useAppStore } from "../../store/useAppStore";
 import { Metrics } from "../common/Metrics";
+import { useCallback } from "react";
 
 type Props = {
     room: Room,
@@ -13,17 +14,17 @@ export function RoomCard({room}: Props) {
     const removeRoom = useAppStore(state => state.removeRoom);
     const removeRoomFromZone = useAppStore(state => state.removeRoomFromZone)
 
-    const onRemoveRoom = () => {
+    const onRemoveRoom = useCallback(() => {
         removeRoom(room.name);
-    }
+    }, [removeRoom])
 
-    const onRemoveRoomFromZone = () => {
+    const onRemoveRoomFromZone = useCallback(() => {
         if (!room.zoneName) {
             return;
         }
 
         removeRoomFromZone(room.name, room.zoneName);
-    }
+    }, [room.zoneName, removeRoomFromZone])
 
     return (
         <Card className="relative">

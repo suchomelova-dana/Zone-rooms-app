@@ -1,4 +1,4 @@
-import { type Dispatch, type RefObject, type SetStateAction,} from "react";
+import { useCallback, type Dispatch, type RefObject, type SetStateAction,} from "react";
 import { FormProvider, useForm, type SubmitHandler } from "react-hook-form";
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "../../shadcn/form";
 import type { Zone } from "../../../types/Zone";
@@ -21,7 +21,7 @@ export function AddZoneForm({buttonRef, setIsOpen}: Props) {
     const addZone = useAppStore(state => state.addZone);
     const zones = useAppStore(state => state.zones)
 
-     const onDialogSave: SubmitHandler<Zone> = (data) => {
+     const onDialogSave: SubmitHandler<Zone> = useCallback((data) => {
         if (isNameInArray(data.name, zones)) {
             toast.error("Zóna s tímto názvem již existuje", {
                 style: {
@@ -36,7 +36,7 @@ export function AddZoneForm({buttonRef, setIsOpen}: Props) {
         addZone(data);
         setIsOpen(false);
         form.reset();
-    }
+    }, [isNameInArray, setIsOpen, form,addZone])
 
     return (
         <form onSubmit={form.handleSubmit(onDialogSave)} className="flex flex-col justify-center items-center gap-4 ">

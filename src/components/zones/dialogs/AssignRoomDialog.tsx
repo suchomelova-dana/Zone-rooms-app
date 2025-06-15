@@ -18,10 +18,6 @@ export function AssignRoomDialog({zoneName}: Props) {
     const unassignedRooms = getAllUnassignedRooms(rooms);
     const shouldShowFooterBtns = unassignedRooms.length > 0;
 
-    const onDialogCancel = () => {
-        setIsOpen(false);
-    }
-
     return (
          <Dialog open={isOpen} onOpenChange={setIsOpen}>
             <DialogTrigger asChild={true}>
@@ -48,7 +44,7 @@ export function AssignRoomDialog({zoneName}: Props) {
                 {
                     shouldShowFooterBtns &&
                         <DialogFooter>
-                            <DialogClose asChild={true} onClick={onDialogCancel} >Zrušit</DialogClose>
+                            <DialogClose asChild={true} onClick={() => setIsOpen(false)} >Zrušit</DialogClose>
                             <Button onClick={() => buttonRef.current?.click()} >Uložit</Button>
                         </DialogFooter>
                 }
