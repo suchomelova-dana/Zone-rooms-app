@@ -46,7 +46,7 @@ export function AddZoneForm({buttonRef, setIsOpen}: Props) {
                     name="name"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel >Jméno</FormLabel>
+                            <FormLabel isRequired={true}>Jméno</FormLabel>
                             <FormControl>
                                 <Input placeholder="Jméno" required={true} {...field} />
                             </FormControl>
@@ -54,7 +54,6 @@ export function AddZoneForm({buttonRef, setIsOpen}: Props) {
                         </FormItem>
                     )}
                 />
-
                 <button ref={buttonRef} type="submit" hidden={true} />
             </FormProvider>
         </form>

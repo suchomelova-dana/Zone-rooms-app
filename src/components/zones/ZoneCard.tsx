@@ -34,10 +34,13 @@ export function ZoneCard({zone}: Props) {
                     <ZoneRoomsList zoneName={zone.name} />
                     <AssignRoomDialog zoneName={zone.name} />
                 </span>
-               
             </CardContent>
              <div className="absolute h-full -right-5 top-0 flex flex-col justify-center gap-2">
-                <Button className="rounded-full w-10 h-10 bg-red-400 shadow-md" onClick={onRemoveZone}>
+                <Button
+                    className="rounded-full w-10 h-10 bg-red-400 shadow-md"
+                    onClick={onRemoveZone}
+                    tooltipText="Odstranit zónu"
+                >
                     <Trash />
                 </Button>
                 <ZoneRoomsDialog zone={zone}/>

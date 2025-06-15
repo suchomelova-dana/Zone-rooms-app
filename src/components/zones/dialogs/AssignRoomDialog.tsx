@@ -25,7 +25,11 @@ export function AssignRoomDialog({zoneName}: Props) {
     return (
          <Dialog open={isOpen} onOpenChange={setIsOpen}>
             <DialogTrigger asChild={true}>
-                <Button className="h-6 w-6 mx-4" onClick={() => setIsOpen(true)}>
+                <Button
+                    className="h-6 w-6 mx-4"
+                    onClick={() => setIsOpen(true)}
+                    tooltipText="Přidat místnost do zóny"
+                >
                     <Plus />
                 </Button>
             </DialogTrigger>
@@ -48,7 +52,6 @@ export function AssignRoomDialog({zoneName}: Props) {
                             <Button onClick={() => buttonRef.current?.click()} >Uložit</Button>
                         </DialogFooter>
                 }
-                
             </DialogContent>
         </Dialog>
     )

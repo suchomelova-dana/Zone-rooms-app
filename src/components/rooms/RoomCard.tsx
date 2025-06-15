@@ -28,25 +28,31 @@ export function RoomCard({room}: Props) {
     return (
         <Card className="relative">
             <CardHeader className="flex flex-row justify-between">
-                <CardTitle>{room.name}</CardTitle>
+                <CardTitle className="uppercase">{room.name}</CardTitle>
                 <CardDescription className="">{room.zoneName || ""}</CardDescription>
                 <Metrics area={room.area} volume={room.volume} />
             </CardHeader>
             <div className="absolute h-full -right-5 top-0 flex flex flex-col gap-1 items-center justify-center">
-                <Button className="rounded-full w-10 h-10 bg-red-400 shadow-md" onClick={onRemoveRoom}>
+                <Button
+                    className="rounded-full w-10 h-10 bg-red-400 shadow-md"
+                    onClick={onRemoveRoom}
+                    tooltipText="Odstranit místnost"
+                >
                     <Trash />
                 </Button>
                 {
                     room.zoneName && (
-                        <Button variant="outline" className="rounded-full w-10 h-10 shadow-md" onClick={onRemoveRoomFromZone}>
+                        <Button
+                            variant="outline"
+                            className="rounded-full w-10 h-10 shadow-md"
+                            onClick={onRemoveRoomFromZone}
+                            tooltipText="Odtranit místnost ze zóny"
+                        >
                             <Unlink />
                         </Button>
                     )
                 }
-                
             </div>
-            
         </Card>
-       
     )
 }

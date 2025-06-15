@@ -14,10 +14,18 @@ export function ZoneRoomsDialog({zone}: Props) {
     const zoneRooms = getRoomsByZoneName(zone.name, rooms);
     const removeRoomFromZone = useAppStore(state => state.removeRoomFromZone)
 
+    if (zoneRooms.length <= 0) {
+        return null;
+    }
+
     return (
         <Dialog>
             <DialogTrigger asChild={true} >
-                <Button variant="outline" className="rounded-full w-10 h-10 shadow-md">
+                <Button
+                    variant="outline"
+                    className="rounded-full w-10 h-10 shadow-md"
+                    tooltipText="Detailní seznam místností"
+                >
                     <Eye />
                 </Button>
             </DialogTrigger>
@@ -36,6 +44,7 @@ export function ZoneRoomsDialog({zone}: Props) {
                                     size="icon"
                                     variant="outline"
                                     onClick={() => removeRoomFromZone(r.name, zone.name)}
+                                    tooltipText="Odtranit místnost ze zóny"
                                 >
                                     <Unlink />
                                 </Button>
